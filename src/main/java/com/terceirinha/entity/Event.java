@@ -1,9 +1,6 @@
 package com.terceirinha.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Event {
@@ -15,6 +12,9 @@ public class Event {
     private String name;
     private String location;
     private String date; // For simplicity, string; can use LocalDate later
+    @Lob
+    @Column(columnDefinition = "BLOB")
+    private byte[] image; // store as bytes, not base64 string
 
     public Event() {
     }
@@ -37,4 +37,7 @@ public class Event {
 
     public String getDate() { return date; }
     public void setDate(String date) { this.date = date; }
+
+    public byte[] getImage() { return image; }
+    public void setImage(byte[] image) { this.image = image; }
 }
